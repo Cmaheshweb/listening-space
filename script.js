@@ -1,10 +1,10 @@
 function showSection(sectionId) {
     const pages = document.querySelectorAll('.page');
     pages.forEach(page => page.classList.remove('active'));
-
     document.getElementById(sectionId).classList.add('active');
 }
 
+// Navigation click
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', function (e) {
         e.preventDefault();
@@ -12,25 +12,37 @@ document.querySelectorAll('nav a').forEach(link => {
         showSection(section);
     });
 });
+
+// Booking form submit → WhatsApp redirect
 document.getElementById("booking-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // simple validation already done by HTML
+    const name = document.getElementById("name").value;
+    const reason = document.getElementById("reason").value;
+    const sessionType = document.getElementById("session-type").value;
     const contact = document.getElementById("contact").value;
 
-    // WhatsApp link (+917028420075)
-    const whatsappNumber = "7028420075"; // 👉 7028420075
+    // ✅ WhatsApp number WITH country code
+    const whatsappNumber = "917028420075"; // +91 7028420075
+
+    let sessionText =
+        sessionType === "free"
+            ? "Free 5-minute intro session"
+            : "Paid ₹99 / 2-hour session";
+
     const message = encodeURIComponent(
-        "Hi, I have booked a SafeTalk session. My contact: " + contact
+        `Hello SafeTalk,
+
+Name: ${name}
+Reason: ${reason}
+Session: ${sessionText}
+My contact: ${contact}
+
+I agree to the rules.`
     );
 
     const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
 
-    document.getElementById("whatsapp-link").href = whatsappURL;
-
-    // show success box
-    document.getElementById("success-box").style.display = "block";
-
-    // optional: scroll to success box
-    document.getElementById("success-box").scrollIntoView({ behavior: "smooth" });
+    // ✅ Direct open WhatsApp
+    window.open(whatsappURL, "_blank");
 });

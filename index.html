@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<!-- Header -->
 <header>
     <nav>
         <div class="nav-container">
@@ -25,10 +26,12 @@
 
 <main>
 
+<!-- HOME -->
 <section id="home" class="page active">
     <div class="container">
         <h2>Feeling unheard? You’re not alone.</h2>
         <p>A safe, respectful space to talk — without judgment.</p>
+
         <div class="buttons">
             <button onclick="showSection('book-session')">Try 5-Minute Free Intro</button>
             <button onclick="showSection('book-session')">Book Paid Session (₹99 / 2 Hours)</button>
@@ -36,107 +39,111 @@
     </div>
 </section>
 
+<!-- HOW IT WORKS -->
 <section id="how-it-works" class="page">
     <div class="container">
         <h2>How It Works</h2>
         <ol>
             <li>Choose Free or Paid session</li>
             <li>Agree to rules</li>
-            <li>Submit your details</li>
-            <li>Pay (for paid session)</li>
-            <li>Get connected on WhatsApp</li>
+            <li>Share contact (WhatsApp / Telegram)</li>
+            <li>Get connected and talk</li>
         </ol>
     </div>
 </section>
 
+<!-- RULES -->
 <section id="rules-safety" class="page">
     <div class="container">
         <h2>Rules & Safety</h2>
         <ul>
-            <li>No sexual content</li>
+            <li>No sexual talk allowed</li>
             <li>No physical meetings</li>
-            <li>No abuse or harassment</li>
-            <li>This is not therapy or medical advice</li>
-            <li>Session may stop if rules are broken</li>
+            <li>No abuse, threats, or harassment</li>
+            <li>This is NOT therapy or medical advice</li>
+            <li>This is NOT dating or relationship service</li>
+            <li>Session may be stopped if rules are broken</li>
         </ul>
     </div>
 </section>
 
+<!-- BOOK SESSION -->
 <section id="book-session" class="page">
     <div class="container">
-
         <h2>Book a Session</h2>
 
         <h3 class="session-note">
             You will be listened to here.<br>
             Your feelings will be respected.<br>
-            And you will be spoken to with care.
+            You will be spoken to with care.
         </h3>
 
         <form id="booking-form">
 
-            <label>Name / Nickname</label>
+            <label>Name / Nickname:</label>
             <input type="text" id="name" required>
 
-            <label>Reason for talking</label>
+            <label>Reason for talking:</label>
             <select id="reason" required>
-                <option value="">Select</option>
+                <option value="">Select a reason</option>
                 <option>Feeling stressed</option>
                 <option>Need to vent</option>
                 <option>Personal issues</option>
                 <option>Other</option>
             </select>
 
-            <label>Session Type</label>
+            <label>Session type:</label>
             <select id="session-type" required>
-                <option value="free">Free 5 minutes</option>
-                <option value="paid">Paid ₹99 – 2 Hours</option>
+                <option value="free">Free 5 min</option>
+                <option value="paid">Paid ₹99 – 1 hours</option>
             </select>
 
-            <label>WhatsApp Number</label>
-            <input type="text" id="contact" placeholder="+91XXXXXXXXXX" required>
+            <label>WhatsApp Number:</label>
+            <input type="text" id="contact" placeholder="e.g. 7028420075" required>
 
-            <label>
+            <label class="checkbox">
                 <input type="checkbox" required> I agree to the rules
             </label>
 
             <button type="submit">Submit</button>
         </form>
 
-        <!-- SUCCESS -->
+        <!-- SUCCESS BOX -->
         <div id="success-box" style="display:none; margin-top:20px;">
             <p>✅ Booking received.</p>
-            <a id="whatsapp-link" class="pay-btn" target="_blank">
+
+            <a id="whatsapp-link" class="action-btn whatsapp-btn" target="_blank">
                 Continue on WhatsApp
             </a>
-        </div>
 
-        <!-- PAYMENT -->
-        <div id="payment-box" style="display:none; margin-top:20px;">
-            <h3>Complete Payment</h3>
+            <h4>Complete Payment</h4>
             <p>Amount: ₹99</p>
-            <a id="upi-pay-link" class="pay-btn">
+
+            <a id="upi-pay-link" class="action-btn upi-btn"
+               href="upi://pay?pa=mhaske.mahesh2015-1@okaxis&pn=SafeTalk&am=99&cu=INR">
                 Pay ₹99 via UPI
             </a>
-            <p style="font-size:14px;">
+
+            <p style="font-size:14px;margin-top:10px;">
                 After payment, send screenshot on WhatsApp.
             </p>
         </div>
-
     </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="page">
     <div class="container">
         <h2>Contact</h2>
         <p>Email: info@safetalk.com</p>
+        <p>WhatsApp: 7028420075</p>
     </div>
 </section>
 
 </main>
 
 <footer>
-    <p>&copy; 2024 SafeTalk</p>
+    <p>© 2024 SafeTalk. A space to be heard.</p>
 </footer>
 
 <script src="script.js"></script>

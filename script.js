@@ -1,48 +1,39 @@
 function showSection(sectionId) {
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => page.classList.remove('active'));
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(sectionId).classList.add('active');
 }
 
-// Navigation click
 document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', function (e) {
+    link.addEventListener('click', e => {
         e.preventDefault();
-        const section = this.getAttribute('data-section');
-        showSection(section);
+        showSection(link.getAttribute('data-section'));
     });
 });
 
-// Booking form submit → WhatsApp redirect
 document.getElementById("booking-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const reason = document.getElementById("reason").value;
-    const sessionType = document.getElementById("session-type").value;
     const contact = document.getElementById("contact").value;
+    const sessionType = document.getElementById("session-type").value;
 
-    // ✅ WhatsApp number WITH country code
-    const whatsappNumber = "917028420075"; // +91 7028420075
-
-    let sessionText =
-        sessionType === "free"
-            ? "Free 5-minute intro session"
-            : "Paid ₹99 / 2-hour session";
-
+    const whatsappNumber = "917028420075";
     const message = encodeURIComponent(
-        `Hello SafeTalk,
-
-Name: ${name}
-Reason: ${reason}
-Session: ${sessionText}
-My contact: ${contact}
-
-I agree to the rules.`
+        "Hi, I have booked a SafeTalk session. My contact: " + contact
     );
 
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+    document.getElementById("whatsapp-link").href =
+        `https://wa.me/${whatsappNumber}?text=${message}`;
 
-    // ✅ Direct open WhatsApp
-    window.open(whatsappURL, "_blank");
+    document.getElementById("success-box").style.display = "block";
+
+    if (sessionType === "paid") {
+        const upiId = "mhaske.mahesh2015-1@okaxis";
+        const upiLink = `upi://pay?pa=${upiId}&pn=SafeTalk&am=99&cu=INR`;
+        document.getElementById("upi-pay-link").href = upiLink;
+        document.getElementById("payment-box").style.display = "block";
+    } else {
+        document.getElementById("payment-box").style.display = "none";
+    }
+
+    document.getElementById("success-box").scrollIntoView({ behavior: "smooth" });
 });
